@@ -1,0 +1,29 @@
+#include <unistd.h>
+#include <stdio.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+int rec_ft_print_combn(int start_with, int n)
+{
+    int buffer;
+	
+    if (n > 0 && n < 10) 
+    {
+        while (start_with != (10 - n))
+        {
+            ft_putchar(start_with + '0');
+            rec_ft_print_combn(start_with + 1 , n - 1); 
+            start_with++;
+        }
+    }
+    else
+        ft_putchar(',');
+}
+
+void	main(void)
+{
+	rec_ft_print_combn(0,9);
+}

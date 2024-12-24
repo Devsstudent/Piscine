@@ -1,0 +1,20 @@
+CC=gcc
+
+LDIR =/usr/bin/ld
+
+_DEPS = main.h
+
+_OBJ = $(patsubst %.c,%.o,$(wildcard *.c) $(wildcard */*.c)) 
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
+
+$(ODIR)/%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+
+.PHONY: clean
+
+clean:
+	rm -f $(ODIR)/*.o *~ core $(IDIR)/*~ 
